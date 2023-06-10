@@ -70,3 +70,18 @@ client.on('messageReactionAdd', async (reaction, user) => {
     })
     member.roles.add(role)
 })
+
+//チャンネル作成.
+client.on('message', Message => {
+  if (Message.content === 'チャンネルの作成') {
+    const guild = Message.guild
+    guild.channels
+      .create('新しいチャンネル', {
+        type: 'text',// 'text'or'voice'
+      })
+      .then(channel => {
+        console.log('チャンネルを作成しました:', channel.name)
+      })
+      .catch(console.error)
+  }
+})
